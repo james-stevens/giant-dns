@@ -1,0 +1,9 @@
+#! /bin/sh
+##########################################################################
+#    (c) Copyright 2021-2022 JRCS Ltd - All Rights Reserved              #
+##########################################################################
+
+forks=1
+if test "${GIANT_FORKS}"; then forks="${GIANT_FORKS}"; fi
+
+exec /usr/local/sbin/giant-dns -l x400001 -d /usr/local/db -f 0.0.0.0 -M ${forks} -a -R

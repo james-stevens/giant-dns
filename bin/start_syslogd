@@ -1,0 +1,11 @@
+#! /bin/sh
+##########################################################################
+#    (c) Copyright 2021-2022 JRCS Ltd - All Rights Reserved              #
+##########################################################################
+
+if test "${GIANT_SYSLOG_SERVER}"
+	then
+		exec /sbin/syslogd -n -R ${GIANT_SYSLOG_SERVER}
+	else
+		exec /sbin/syslogd -n -O -
+	fi
