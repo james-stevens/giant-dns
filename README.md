@@ -16,7 +16,7 @@ Giant-DNS is a high performance DNS server for very large data sets.
 ## This Container
 
 This container is a demo of Giant-DNS with all the data from the zone files for COM and NET
-which uses about 6Gb of RAM to run in.
+which uses about 6Gb of RAM to run in. Total 144,004,517 names.
 
 GLUE record mode has been set to "promiscuous", so all GLUE records will be included
 in all responses whether the `NS` is in `COM` or `NET`.
