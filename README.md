@@ -10,7 +10,7 @@ Giant-DNS is a high performance DNS server for very large data sets.
 - Multiple instances, on the same LAN, can automatically form a cluster
 - Longer start-up time for extreme fast runtime
 - Can saturate 100Mb/s Ethernet with DNS responses
-- Accepts updates with using a push journal-stream (not included in this demo)
+- Accepts updates using a push journal-stream (not included in this demo)
 
 
 ## This Container
