@@ -1,5 +1,7 @@
 # giant-dns
 
+# UNDER RE-CONSTRUCTION - available again soon
+
 ## Intro
 
 Giant-DNS is a high performance DNS server for very large data sets. 
