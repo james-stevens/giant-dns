@@ -1,7 +1,5 @@
 # giant-dns
 
-# UNDER RE-CONSTRUCTION - available again soon
-
 ## Intro
 
 Giant-DNS is a high performance DNS server for very large data sets. 
@@ -14,24 +12,41 @@ Giant-DNS is a high performance DNS server for very large data sets.
 - Can saturate 100Mb/s Ethernet with DNS responses
 - Accepts updates using a push journal-stream (not included in this demo)
 
+It can handle 1000s of small domains (test to 250K), or a few really large domains (like this demo), or anything inbetween.
+Maximum memory optimisation is achieved with a small numnber of large domains that consist mostly of delegations.
 
 ## This Container
 
 This container is a demo of Giant-DNS with all the data from the zone files for COM and NET
-which uses about 6Gb of RAM to run in. Total 144,004,517 names.
+which uses about 10Gb of RAM to run in. Total 173,919,049 names
+
+COM - 1666828823 - Thu Oct 27 00:00:23 UTC 2022
+NET - 1666742427 - Wed Oct 26 00:00:27 UTC 2022
 
 GLUE record mode has been set to "promiscuous", so all GLUE records will be included
-in all responses whether the `NS` is in `COM` or `NET`.
+in all responses whether the SLD or `NS` is in `COM` or `NET`. You can disable
+this by removing the `-a` flag in `bin/start_giant_dns`.
 
 All you need to do is run `./dkmk` to build the container, then `./dkrun` to run it.
 
 By default, it's configured for one fork - set the environment variable `GIANT_FORKS=<n>`
-to get `<n>` forks, if you have more CPU cores you wish to utilise.
+to get `<n>` forks, if you have more CPU cores you wish to utilise. More forks will also use more memory.
 
-On my Lab server it takes the container about 6 mins to load up COM & NET.
+On my Lab server it takes the container about 1 min 10 seconds to load up COM & NET and be ready to answer queries.
 
-Set environment variable `GIANT_SYSLOG_SERVER` to an IP Address
-if you want to syslog to a server, default is `stdout`.
+Set environment variable `GIANT_SYSLOG_SERVER` to an IP Address if you want to syslog to a server, default is `stdout`.
+
+
+## Discussion of Memory Over-Allocation
+
+It looks like the `musl-libc` `malloc` can lead to excessive memory (https://musl.openwall.narkive.com/J9ymcXt2/what-s-wrong-with-s-malloc)[over allocation].
+
+I've run `giant_dns` with `valgrind` and I'm pretty sure the memory usage reported at start-up is correct. 
+This reports about 5.5Gb - so the 10Gb reported by `ps` represents a very significant over-allocation.
+
+There's probably a better `alloc` library I could use, but I've not really spent time looking into this.
+
+
 
 ## Example
 
