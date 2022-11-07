@@ -42,7 +42,7 @@ Set environment variable `GIANT_SYSLOG_SERVER` to an IP Address if you want to s
 
 ## Discussion of Memory Over-Allocation
 
-It looks like the `musl-libc` `malloc` can lead to excessive memory [https://musl.openwall.narkive.com/J9ymcXt2/what-s-wrong-with-s-malloc](over allocation).
+It looks like the `musl-libc` `malloc` can lead to excessive memory [over allocation](https://musl.openwall.narkive.com/J9ymcXt2/what-s-wrong-with-s-malloc).
 
 I've run `giant_dns` with `valgrind` and I'm pretty sure the memory usage reported at start-up is correct. 
 This reports about 5.5Gb - so the 10Gb reported by `ps` represents a very significant over-allocation.
