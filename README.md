@@ -19,7 +19,7 @@ Maximum memory optimisation is achieved with a small numnber of large domains th
 ## This Container
 
 This container is a demo of Giant-DNS with all the data from the zone files for COM and NET
-which uses about 10Gb of RAM to run in. serviing a total of 173,919,049 names
+which uses about 10Gb of RAM to run in (should be about 5.5Gb, see below). serviing a total of 173,919,049 names
 
 | Zone | SOA Serial | Date & Time |
 | --- | ---: | --- |
