@@ -49,10 +49,13 @@ This reports about 5.5Gb - so the 10Gb reported by `ps` represents a very signif
 
 There's probably a better `alloc` library I could use, but I've not really spent time looking into this.
 
-However, the data on disk (in `db`) is about 8Gb (plus about 1Gb in `groups`) and
+However, the data on disk (in `db` & `groups`) is about 8Gb + 1Gb and
 I wouldn't expect the memory usage to be wildly different from that.
+From that respect 10Gb makes sense.
 
 So right now I'm not totally sure what is going on, but its gonna use 10Gb to run!
+
+Maybe I'm just adding up wrong, but I don't think so.
 
 
 Because it knows there aren't going to be any changes to the zone data loaded, it does tighten
