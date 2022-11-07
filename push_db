@@ -1,0 +1,13 @@
+#! /bin/sh
+
+cd db
+all="$(ls *.db | awk '{ print substr($0,1,2) }' | uniq)"
+
+if test "$1"; then all="$*"; fi
+
+for pfx in ${all}
+do
+	git add ${pfx}*.db
+	git commit -m "db ${pfx}XX.db"
+	git push
+done
