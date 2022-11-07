@@ -19,7 +19,7 @@ Maximum memory optimisation is achieved with a small numnber of large domains th
 ## This Container
 
 This container is a demo of Giant-DNS with all the data from the zone files for COM and NET
-which uses about 10Gb of RAM to run in (should be about 5.5Gb, see below). serviing a total of 173,919,049 names
+which uses about 10Gb of RAM to run in (see below). serviing a total of 173,919,049 names
 
 | Zone | SOA Serial | Date & Time |
 | --- | ---: | --- |
@@ -48,6 +48,15 @@ I've run `giant_dns` with `valgrind` and I'm pretty sure the memory usage report
 This reports about 5.5Gb - so the 10Gb reported by `ps` represents a very significant over-allocation.
 
 There's probably a better `alloc` library I could use, but I've not really spent time looking into this.
+
+However, the data on disk (in `db`) is about 8Gb (plus about 1Gb in `groups`) and
+I wouldn't expect the memory usage to be wildly different from that.
+
+So right now I'm not totally sure what is going on, but its gonna use 10Gb to run!
+
+
+Because it knows there aren't going to be any changes to the zone data loaded, it does tighten
+up the allocations. This helps reduce memory usage, but by perentages, not vastly.
 
 
 
