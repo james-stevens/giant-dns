@@ -42,12 +42,12 @@ Set environment variable `GIANT_SYSLOG_SERVER` to an IP Address if you want to s
 
 ## Memory Usage
 
-Since 2017 the mwemory usage has increased from 6.6Gb to 10Gb. This is due to two factors
+Since 2017 the memory usage has increased from 6.6Gb to 10Gb. This is due to two factors
 
 - The number of names has increased from 144M to 174M
 - Far more names are now signed. This is the most significant factor.
 
-All DNSSEC RRs (DS, NSEC3 & RRSIG) are unique and use hashes that create a result that will be (mostly) uncompressable.
+All reoccuring DNSSEC RRs (DS, NSEC3 & RRSIG) are unique and use hashes that create a result that will be (mostly) uncompressable.
 
 
 ## Example
