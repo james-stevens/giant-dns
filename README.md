@@ -19,7 +19,7 @@ Maximum memory optimisation is achieved with a small numnber of large domains th
 ## This Container
 
 This container is a demo of Giant-DNS with all the data from the zone files for COM and NET
-which uses about 10Gb of RAM to run in (see below). serviing a total of 173,919,049 names
+which uses about 10Gb of RAM to run in. serviing a total of 173,919,049 names
 
 | Zone | SOA Serial | Date & Time |
 | --- | ---: | --- |
@@ -40,27 +40,14 @@ On my Lab server it takes the container about 1 min 10 seconds to load up COM & 
 Set environment variable `GIANT_SYSLOG_SERVER` to an IP Address if you want to syslog to a server, default is `stdout`.
 
 
-## Discussion of Memory Over-Allocation
+## Memory Usage
 
-It looks like the `musl-libc` `malloc` can lead to excessive memory [over allocation](https://musl.openwall.narkive.com/J9ymcXt2/what-s-wrong-with-s-malloc).
+Since 2017 the mwemory usage has increased from 6.6Gb to 10Gb. This is due to two factors
 
-I've run `giant_dns` with `valgrind` and I'm pretty sure the memory usage reported at start-up is correct. 
-This reports about 5.5Gb - so the 10Gb reported by `ps` represents a very significant over-allocation.
+- The number of names has increased from 144M to 174M
+- Far more names are now signed. This is the most significant factor.
 
-There's probably a better `alloc` library I could use, but I've not really spent time looking into this.
-
-However, the data on disk (in `db` & `groups`) is about 8Gb + 1Gb and
-I wouldn't expect the memory usage to be wildly different from that.
-From that respect 10Gb makes sense.
-
-So right now I'm not totally sure what is going on, but its gonna use 10Gb to run!
-
-Maybe I'm just adding up wrong, but I don't think so.
-
-
-Because it knows there aren't going to be any changes to the zone data loaded, it does tighten
-up the allocations. This helps reduce memory usage, but by perentages, not vastly.
-
+All DNSSEC RRs (DS, NSEC3 & RRSIG) are unique and use hashes that create a result that will be (mostly) uncompressable.
 
 
 ## Example
