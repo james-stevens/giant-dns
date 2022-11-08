@@ -50,6 +50,14 @@ Since 2017 the memory usage has increased from 6.6Gb to 10Gb. This is due to two
 All reoccuring DNSSEC RRs (DS, NSEC3 & RRSIG) are unique and use hashes that create a result that will be (mostly) uncompressable.
 
 
+Currently it breaks down as follows
+| db | size |
+| --- | ---: |
+| COM NSEC3 db | 1.56Gb |
+| NET NSEC3 db | 151.33Mb |
+| Main db | 7.24Gb |
+
+
 ## Example
 
 NOTE: this is not the standard `dig` from ISC, but quite similar.
