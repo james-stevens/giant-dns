@@ -55,6 +55,7 @@ Currently it breaks down as follows
 | --- | ---: |
 | COM NSEC3 db | 1.56Gb |
 | NET NSEC3 db | 151.33Mb |
+| Shared Data | 39.35Mb |
 | Main db | 7.24Gb |
 
 
