@@ -9,17 +9,19 @@ Giant-DNS is a high performance DNS server for very large data sets.
 - Memory reduction techniques
 - Multiple instances, on the same LAN, can automatically form a cluster
 - Longer start-up time for extreme fast runtime
-- Can saturate 100Mb/s Ethernet with DNS responses
+- Can saturate 100Mb/s Ethernet with DNS responses (approx 250K queries / sec)
 - Accepts updates using a push journal-stream (not included in this demo)
 
 It can handle 1000s of small domains (test to 250K), or a few really large domains (like this demo), or any mix.
-Maximum memory optimisation is achieved with a small numnber of large domains that consist mostly of delegations.
+Maximum memory optimisation is achieved with a small number of large domains that consist mostly of delegations.
 
+Journal updates run at least 100K per second, but obviously this will impact the query performance.
+There will always be a trade-off and where that trade-off lies depends on your hardware - esp, BUS & Ethernet contention.
 
 ## This Container
 
 This container is a demo of Giant-DNS with all the data from the zone files for COM and NET
-which uses about 10Gb of RAM to run in. serviing a total of 173,919,049 names
+which uses about 10Gb of RAM to run in. serving a total of 173,919,049 names
 
 | Zone | SOA Serial | Date & Time |
 | --- | ---: | --- |
@@ -47,7 +49,7 @@ Since 2017 the memory usage has increased from 6.6Gb to 10Gb. This is due to two
 - The number of names has increased from 144M to 174M
 - Far more names are now signed. This is the most significant factor.
 
-All reoccuring DNSSEC RRs (DS, NSEC3 & RRSIG) are unique and use hashes that create a result that will be (mostly) uncompressable.
+All reoccurring DNSSEC RRs (DS, NSEC3 & RRSIG) are unique and use hashes that create a result that will be (mostly) uncompress-able.
 
 
 Currently it breaks down as follows
