@@ -3,11 +3,11 @@
 ## Intro
 
 Giant-DNS is a high performance DNS server for very large data sets. 
-- Tested to 500M names, but should scale to 1B (further with some code changes)
+- Tested to 500M names, but should scale to 1B (further, with some code changes)
 - <<<1ms response time
 - DNSSEC, NSEC + NSEC3
 - Memory reduction techniques
-- Multiple instances, on the same LAN, can automatically form a cluster
+- Multiple instances, on the same LAN, automatically cluster (load-balancing & fail-over)
 - Longer start-up time for extreme fast runtime
 - Can saturate 100Mb/s Ethernet with DNS responses (approx 250K queries / sec)
 - Accepts updates using a push journal-stream (not included in this demo)
